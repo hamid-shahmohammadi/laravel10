@@ -38,9 +38,9 @@
                             'Authorization': 'Bearer ' + localStorage.getItem("token")
                         },
                     }).then((res) => {
-
-                        self.posts = self.posts.concat(res.data.posts.data);
-                        self.nextPageUrl = res.data.posts.next_page_url;
+                        console.log(res)
+                        self.posts = self.posts.concat(res.data.data);
+                        self.nextPageUrl = res.data.links.next;
                         console.log(self.posts)
                     }).catch((err) => console.log(err));
                 }
