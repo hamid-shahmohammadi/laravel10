@@ -50,6 +50,7 @@ function listPost () {
                     self.posts = res.data.data;
                     self.nextPageUrl = res.data.links.next;
                     self.$refs.closepost.click()
+                    self.form={ title:null,body:null}
                 }
 
             }).catch((err) => console.log(err));
