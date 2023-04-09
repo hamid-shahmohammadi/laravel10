@@ -9,15 +9,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <x-posts.create  />
-                    <hr class="my-4"/>
-                    <x-posts.list  />
-
+                    <x-posts.create />
+                    <hr class="my-4" />
+                    <x-posts.list />
                 </div>
             </div>
         </div>
     </div>
     <script>
-        localStorage.setItem("token", "{{ $token }}");
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('post', {
+                token: "{{ $token }}",
+
+            })
+        })
     </script>
 </x-app-layout>
