@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12" x-data="listPost()">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -16,12 +16,16 @@
             </div>
         </div>
     </div>
+
     <script>
+        const routePosts="{{ route('api.posts') }}";
+        const routePostsCreate="{{ route('api.posts.create') }}";
         document.addEventListener('alpine:init', () => {
             Alpine.store('post', {
                 token: "{{ $token }}",
 
             })
-        })
+        });
     </script>
+    <script src="{{ Vite::asset('resources/js/post/ListPost.js') }}"></script>
 </x-app-layout>

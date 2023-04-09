@@ -3,7 +3,11 @@ function listPost () {
         search: "",
         posts: [],
         nextPageUrl: null,
-        init() { // mounted vue
+        form:{
+            title:null,
+            body:null
+        },
+        init() {
             this.getPost();
         },
         get searchItem() {
@@ -30,6 +34,24 @@ function listPost () {
                 self.posts = self.posts.concat(res.data.data);
                 self.nextPageUrl = res.data.links.next;
                 console.log(self.posts)
+            }).catch((err) => console.log(err));
+        },
+        createPost(){
+            const self = this;
+            console.log(this.form)
+            axios.post(routePostsCreate,this.form, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + this.$store.post.token
+                },
+            }).then((res) => {
+                if(res){
+                    console.log(res)
+                    self.posts = res.data.data;
+                    self.nextPageUrl = res.data.links.next;
+                    self.$refs.closepost.click()
+                }
+
             }).catch((err) => console.log(err));
         }
     }

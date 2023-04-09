@@ -1,4 +1,4 @@
-<div x-data="listPost()">
+<div>
     <h2>Posts</h2>
     <input x-model="search" placeholder="Search..." class="dark:bg-gray-600 my-2 px-1 rounded-md">
     <div class="py-2">
@@ -9,10 +9,8 @@
             :disabled="nextPageUrl === null">more</button>
     </div>
 </div>
-<script>
-    const routePosts="{{ route('api.posts') }}";
-</script>
-<script src="{{ Vite::asset('resources/js/post/ListPost.js') }}"></script>
+
+
 
 
 
