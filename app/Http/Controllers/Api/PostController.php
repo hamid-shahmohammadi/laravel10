@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function all()
     {
-        $posts=Post::orderBy('id', 'DESC')->paginate(5,['id','title','created_at']);
+        $posts=Post::orderBy('id', 'DESC')->paginate(5,['id','title','body','created_at']);
 
         return PostResource::collection($posts);
     }
