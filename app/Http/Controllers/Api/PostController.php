@@ -24,7 +24,19 @@ class PostController extends Controller
             'user_id'=>Auth::id(),
         ]);
 
-        $posts=Post::orderBy('id', 'DESC')->paginate(5,['id','title','created_at']);
+        $posts=Post::orderBy('id', 'DESC')->paginate(5);
+
+        return PostResource::collection($posts);
+    }
+    public function update(Request $request)
+    {
+        Post::where('id',$request->id)->update([
+            'title'=>$request->title,
+            'body'=>$request->body,
+            'user_id'=>Auth::id(),
+        ]);
+
+        $posts=Post::orderBy('id', 'DESC')->paginate(5);
 
         return PostResource::collection($posts);
     }

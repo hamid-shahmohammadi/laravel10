@@ -24,4 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/posts', [PostController::class, 'all'])->name('api.posts');
     Route::post('/posts/create', [PostController::class, 'create'])->name('api.posts.create');
+    Route::put('/posts/update', [PostController::class, 'update'])->name('api.posts.update');
 });

@@ -74,6 +74,21 @@ function listPost() {
         },
         updatePost() {
             console.log(this.form)
+            self=this;
+            axios.put(routePostsUpdate, this.form, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + this.$store.post.token
+                },
+            }).then((res) => {
+                if (res) {
+                    console.log(res)
+                    self.posts = res.data.data;
+                    self.nextPageUrl = res.data.links.next;
+                    self.showEditForm=false;
+                    self.form = { title: null, body: null }
+                }
+            }).catch((err) => console.log(err));
         }
     }
 }
