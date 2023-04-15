@@ -72,8 +72,8 @@ function listPost() {
 
             }).catch((err) => console.log(err));
         },
-        editpost() {
-
+        updatePost() {
+            console.log(this.form)
         }
     }
 }

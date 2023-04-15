@@ -1,4 +1,4 @@
-<div class="relative min-h-screen">
+<div class="">
     <h2>Posts</h2>
     <input x-model="search" placeholder="Search..." class="dark:bg-gray-600 my-2 px-1 rounded-md">
     <div class="py-2">
@@ -11,8 +11,9 @@
             :disabled="nextPageUrl === null">more</button>
     </div>
 
-
-    <div class="absolute top-20 mx-auto p-5 border w-2/3 shadow-lg rounded-md bg-white" x-show="showEditForm" x-transition.duration.500ms>
+    <div x-show="showEditForm" x-transition.duration.500ms style="background-color:rgba(0,0,0,.5)"
+        class="mx-auto absolute top-0 left-0 w-full h-full flex items-center shadow-lg overflow-x-hidden overflow-y-auto">
+    <div class="top-20 mx-auto p-5 border w-2/3 shadow-lg rounded-md bg-white"  >
         <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                 Edit Post
@@ -22,7 +23,7 @@
                 <span class="sr-only">Close modal</span>
             </button>
         </div>
-        <form @submit.prevent="editPost()" class="py-4">
+        <form @submit.prevent="updatePost()" class="py-4">
 
             <div class="mb-6">
                 <input type="hidden" x-model="form.id" />
@@ -47,6 +48,7 @@
                     class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Close</button>
             </div>
         </form>
+    </div>
     </div>
 
 </div>
