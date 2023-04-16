@@ -3,6 +3,7 @@ function setup() {
         search: '',
         nextPageUrl: null,
         showCreateForm:false,
+        errors:[],
         posts: [],
         form:{
             id:null,
@@ -36,7 +37,23 @@ function setup() {
             }).catch((err) => console.log(err))
         },
         createPost(){
-            console.log(this.form)
+            const self = this;
+            axios.post(routePostsStore,self.form,{
+                headers: {
+                    'Content-Type':'application/json',
+                    'Authorization': 'Bearer ' + this.$store.post.token
+                  }
+            }).then((res) => {
+                console.log(res);
+                self.posts = res.data.data;
+                self.nextPageUrl = res.data.links.next;
+                self.form={id:null,title:null,body:null};
+                self.showCreateForm=false;
+                console.log(self.posts);
+            }).catch((err) => {
+                self.errors=err.response.data.errors
+                console.log(err)
+            })
         }
     }
 }

@@ -18,6 +18,7 @@
 
     <script>
         let routePostList="{{ route('api.posts') }}";
+        const routePostsStore="{{ route('api.posts.store') }}";
         document.addEventListener('alpine:init', () => {
         Alpine.store('post', {
             token: "{{ $token }}",
