@@ -36,7 +36,20 @@ function setup() {
             }).catch((err) => console.log(err))
         },
         createPost(){
-            console.log(this.form)
+            const self = this;
+
+            axios.post(routePostStore,this.form,{
+                headers: {
+                    'Content-Type':'application/json',
+                    'Authorization': 'Bearer ' + this.$store.post.token
+                  }
+            }).then((res) => {
+                console.log(res);
+                self.posts = res.data.data;
+                self.nextPageUrl = res.data.links.next;
+                self.form={id:null,title:null,body:null};
+                self.showCreateForm=false;
+            }).catch((err) => console.log(err))
         }
     }
 }
