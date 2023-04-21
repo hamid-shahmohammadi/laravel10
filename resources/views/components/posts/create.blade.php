@@ -1,4 +1,5 @@
-<button class="my-2 bg-blue-800 text-white rounded-md py-2 px-1" @click="showCreateForm=!showCreateForm">Create Post</button>
+<button class="my-2 bg-blue-800 text-white rounded-md py-2 px-2" @click="showCreateForm=!showCreateForm">Create Post</button>
+<hr class="my-4"/>
 <div x-cloak x-show="showCreateForm" x-transition.duration.500ms style="background-color:rgba(0,0,0,.5)"
     class="mx-auto absolute top-0 left-0 w-full h-full flex items-center shadow-lg overflow-x-hidden overflow-y-auto">
     <div class="top-20 mx-auto p-5 border w-2/3 shadow-lg rounded-md bg-white">
@@ -26,12 +27,14 @@
                 <input x-model="form.title" type="text"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="title" >
+                <small class="text-red-600" x-text="errors.title"></small>
             </div>
             <div class="mb-6">
                 <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body</label>
                 <textarea x-model="form.body"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     ></textarea>
+                <small class="text-red-600" x-text="errors.body"></small>
             </div>
 
 

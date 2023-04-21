@@ -4,6 +4,7 @@ function setup() {
         nextPageUrl: null,
         showCreateForm:false,
         posts: [],
+        errors:[],
         form:{
             id:null,
             title:null,
@@ -49,7 +50,11 @@ function setup() {
                 self.nextPageUrl = res.data.links.next;
                 self.form={id:null,title:null,body:null};
                 self.showCreateForm=false;
-            }).catch((err) => console.log(err))
+            }).catch((err) => {
+                console.log(err);
+                self.errors=err.response.data.errors;
+                console.log(self.errors);
+            })
         }
     }
 }
