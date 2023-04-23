@@ -11,6 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100" >
                     <x-posts.create />
                     <x-posts.list />
+                    <x-posts.edit />
                 </div>
             </div>
         </div>
@@ -19,6 +20,7 @@
     <script>
         let routePostList="{{ route('api.posts') }}";
         let routePostStore="{{ route('api.posts.store') }}";
+        let routePostUpdate="{{ route('api.posts.update') }}";
         document.addEventListener('alpine:init', () => {
         Alpine.store('post', {
             token: "{{ $token }}",

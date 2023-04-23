@@ -30,4 +30,16 @@ class PostsController extends Controller
         return PostResource::collection($posts);
 
     }
+    public function update(postRequestStore $request)
+    {
+        $post=Post::find($request->id);
+        $post->title=$request->title;
+        $post->body=$request->body;
+        if($post->save()){
+            $posts=Post::orderBy('id','DESC')->paginate(5);
+            return PostResource::collection($posts);
+        }
+
+
+    }
 }

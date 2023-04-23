@@ -3,6 +3,7 @@ function setup() {
         search: '',
         nextPageUrl: null,
         showCreateForm:false,
+        showEditForm:false,
         posts: [],
         errors:[],
         form:{
@@ -55,6 +56,39 @@ function setup() {
                 self.errors=err.response.data.errors;
                 console.log(self.errors);
             })
+        },
+        editPost(post){
+            return `${post.id} ${post.title}
+            <button @click="editModalPost(post)" class="text-sm rounded-md text-white bg-blue-500 p-2">EDIT</button>
+            `;
+        },
+        editModalPost(post){
+            console.log(post)
+            this.form.id=post.id
+            this.form.title=post.title
+            this.form.body=post.body
+            this.showEditForm=true;
+        },
+        updatePost(){
+            const self = this;
+
+            axios.put(routePostUpdate,this.form,{
+                headers: {
+                    'Content-Type':'application/json',
+                    'Authorization': 'Bearer ' + this.$store.post.token
+                  }
+            }).then((res) => {
+                console.log(res);
+                self.posts = res.data.data;
+                self.nextPageUrl = res.data.links.next;
+                self.form={id:null,title:null,body:null};
+                self.showEditForm=false;
+            }).catch((err) => {
+                console.log(err);
+                self.errors=err.response.data.errors;
+                console.log(self.errors);
+            })
         }
+
     }
 }
