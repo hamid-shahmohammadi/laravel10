@@ -60,6 +60,8 @@ function setup() {
         editPost(post){
             return `${post.id} ${post.title}
             <button @click="editModalPost(post)" class="text-sm rounded-md text-white bg-blue-500 p-2">EDIT</button>
+            <button @click="deletePost(post)" class="text-sm rounded-md text-white bg-red-500 p-2">Delete</button>
+
             `;
         },
         editModalPost(post){
@@ -73,6 +75,26 @@ function setup() {
             const self = this;
 
             axios.put(routePostUpdate,this.form,{
+                headers: {
+                    'Content-Type':'application/json',
+                    'Authorization': 'Bearer ' + this.$store.post.token
+                  }
+            }).then((res) => {
+                console.log(res);
+                self.posts = res.data.data;
+                self.nextPageUrl = res.data.links.next;
+                self.form={id:null,title:null,body:null};
+                self.showEditForm=false;
+            }).catch((err) => {
+                console.log(err);
+                self.errors=err.response.data.errors;
+                console.log(self.errors);
+            })
+        },
+        deletePost(post){
+            const self = this;
+
+            axios.delete('posts/delete/'+post.id,{
                 headers: {
                     'Content-Type':'application/json',
                     'Authorization': 'Bearer ' + this.$store.post.token

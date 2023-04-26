@@ -42,4 +42,13 @@ class PostsController extends Controller
 
 
     }
+    public function delete(Post $post)
+    {
+        if($post->delete()){
+            $posts=Post::orderBy('id','DESC')->paginate(5);
+            return PostResource::collection($posts);
+        }
+
+
+    }
 }
