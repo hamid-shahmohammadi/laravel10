@@ -1,4 +1,4 @@
-function setup() {
+let listPostFN = () => {
     return {
         search: '',
         nextPageUrl: null,
