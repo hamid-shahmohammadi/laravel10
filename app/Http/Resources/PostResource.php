@@ -19,6 +19,7 @@ class PostResource extends JsonResource
             'title' => $this->title,
             'body' => $this->body,
             'created_at' => $this->created_at->diffForHumans(),
+            'can' => $request->user()->id === $this->user_id
         ];
     }
 }

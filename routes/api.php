@@ -26,3 +26,5 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::delete('/posts/delete/{post}',[PostsController::class,'delete'])->name('api.posts.delete');
 
 });
+
+
