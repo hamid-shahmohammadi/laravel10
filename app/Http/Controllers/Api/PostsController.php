@@ -33,6 +33,9 @@ class PostsController extends Controller
     public function update(postRequestStore $request)
     {
         $post=Post::find($request->id);
+
+        $this->authorize('update', $post);
+
         $post->title=$request->title;
         $post->body=$request->body;
         if($post->save()){
@@ -44,6 +47,7 @@ class PostsController extends Controller
     }
     public function delete(Post $post)
     {
+        $this->authorize('delete', $post);
         $post->delete();
         $posts=Post::orderBy('id','DESC')->paginate(5);
         return PostResource::collection($posts);

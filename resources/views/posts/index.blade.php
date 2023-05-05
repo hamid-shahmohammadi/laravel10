@@ -28,6 +28,6 @@
     })
     </script>
 
-
-    <script src="{{ asset('asset/js/post/list.js') }}"></script>
+    <script src="{{ Vite::asset('resources/js/post/ListPost.js') }}"></script>
+    {{-- <script src="{{ asset('asset/js/post/list.js') }}"></script> --}}
 </x-app-layout>

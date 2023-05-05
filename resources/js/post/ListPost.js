@@ -4,6 +4,7 @@ let listPostFN = () => {
         nextPageUrl: null,
         showCreateForm:false,
         showEditForm:false,
+        
         posts: [],
         errors:[],
         form:{
@@ -59,8 +60,12 @@ let listPostFN = () => {
         },
         editPost(post){
             return `${post.id} ${post.title}
+            <template x-if="post.can">
             <button @click="editModalPost(post)" class="text-sm rounded-md text-white bg-blue-500 p-2">EDIT</button>
+            </template>
+            <template x-if="post.can">
             <button @click="deletePost(post)" class="text-sm rounded-md text-white bg-red-500 p-2">Delete</button>
+            </template>
             `;
         },
         editModalPost(post){

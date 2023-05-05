@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class PostResource extends JsonResource
 {
@@ -19,6 +20,7 @@ class PostResource extends JsonResource
             'title' => $this->title,
             'body' => $this->body,
             'created_at' => $this->created_at->diffForHumans(),
+            'can'=> $this->user_id === Auth::id()
         ];
     }
 }
